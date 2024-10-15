@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat Room</title>
+    <script type="module" defer src="https://cdn.jsdelivr.net/npm/@sudodevnull/datastar"></script>
+</head>
+<body>
+    <h2>Chat Room</h2>
+    <main class="container" id="main"
+    >
+        <div>
+            <span>Live feed: </span>
+            <span id="feed" data-on-load="$$get('/stream/')"></span>
+        </div>
+    </main>
+</body>
+</html>
