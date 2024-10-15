@@ -36,13 +36,11 @@ async def root(request: Request):
 @app.get("/stream/")
 async def stream():
     async def event_stream():
-        text = ""
         generator = lorem_ipsum_generator()
         while True:
             try:
-                text += f"{next(generator)} "
-                frag = f'<span id="feed">{text}</span>'
-                yield send_event(frag)
+                frag = f'<span id="feed">{next(generator)} </span>'
+                yield send_event(frag, merge=True)
                 await asyncio.sleep(0.01)
             except StopIteration:
                 break
