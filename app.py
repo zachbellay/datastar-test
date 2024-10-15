@@ -21,6 +21,7 @@ def send_event(frag: str, merge: bool = False):
     event_data = 'event: datastar-fragment\n'   
     if merge:
         event_data += 'data: merge append_element\n'
+        event_data += 'data: selector #feed\n'
     event_data += f'data: fragment {frag}\n\n'
     return event_data
 
@@ -39,7 +40,7 @@ async def stream():
         generator = lorem_ipsum_generator()
         while True:
             try:
-                frag = f'<span id="feed">{next(generator)} </span>'
+                frag = f'<span>{next(generator)} </span>'
                 yield send_event(frag, merge=True)
                 await asyncio.sleep(0.01)
             except StopIteration:
